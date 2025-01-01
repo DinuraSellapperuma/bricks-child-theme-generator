@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Bricks Child Theme Generator</title>
+
+    <!-- JSZip & FileSaver -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Heroicons (optional) -->
+    <script src="https://unpkg.com/@heroicons/vue@2.0.18/dist/heroicons-vue.umd.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-tr from-fuchsia-50 to-pink-50 p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-8 space-y-2">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 flex items-center justify-center gap-2">
+          <span>🎨</span>
+          <span>Bricks Child Theme Generator</span>
+        </h1>
+        <p class="text-gray-600 text-lg font-medium">Create a customized child theme in seconds 🚀</p>
+      </div>
+
+      <!-- Main Form Card -->
+      <div class="bg-white/70 backdrop-blur-xl border border-gray-100 shadow-xl rounded-2xl p-6 md:p-8">
+        <form id="themeForm" class="space-y-6">
+          <!-- Two Column Layout for Smaller Fields -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Theme Name -->
+            <div class="space-y-2">
+              <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="themeName">
+                <span>🎨</span>
+                <span>Theme Name</span>
+              </label>
+              <input
+                type="text"
+                id="themeName"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+                placeholder="Enter theme name"
+              />
+            </div>
+
+            <!-- Version -->
+            <div class="space-y-2">
+              <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="themeVersion">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-600" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.143c.969 0 1.371 1.24.588 1.81l-3.356 2.438a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.356-2.438a1 1 0 00-1.176 0l-3.356 2.438c-.785.57-1.84-.197-1.54-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.482 9.39c-.783-.57-.38-1.81.588-1.81h4.144a1 1 0 00.95-.69l1.286-3.962z"
+                  />
+                </svg>
+                <span>Version</span>
+              </label>
+              <input
+                type="text"
+                id="themeVersion"
+                value="1.0.0"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+                placeholder="1.0.0"
+              />
+            </div>
+
+            <!-- Author -->
+            <div class="space-y-2">
+              <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="themeAuthor">
+                <span>👤</span>
+                <span>Author</span>
+              </label>
+              <input
+                type="text"
+                id="themeAuthor"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+                placeholder="Your name"
+              />
+            </div>
+
+            <!-- Author URI -->
+            <div class="space-y-2">
+              <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="authorUri">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-pink-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.752 11.168l-3.197-2.132a2 2 0 00-2.31.12l-7.603 5.234a2 2 0 000 3.164l7.603 5.234a2 2 0 002.31.12l3.197-2.132a2 2 0 00.848-1.66V12.828a2 2 0 00-.848-1.66z"
+                  />
+                </svg>
+                <span>Author URI</span>
+              </label>
+              <input
+                type="url"
+                id="authorUri"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+                placeholder="https://your-website.com"
+              />
+            </div>
+          </div>
+
+          <!-- Theme Description -->
+          <div class="space-y-2">
+            <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="themeDescription">
+              <span>📝</span>
+              <span>Description</span>
+            </label>
+            <textarea
+              id="themeDescription"
+              rows="3"
+              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+              placeholder="Describe your theme..."
+            ></textarea>
+          </div>
+
+          <!-- Folder Name -->
+          <div class="space-y-2">
+            <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="folderName">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-pink-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h3.6a1 1 0 01.7.3l1.4 1.4A1 1 0 0012 7h6a2 2 0 012 2v1M9 14h.01M15 14h.01M19 14h2m-7 2H5a2 2 0 01-2-2V9m0 0h.01"
+                />
+              </svg>
+              <span>Folder Name</span>
+            </label>
+            <input
+              type="text"
+              id="folderName"
+              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all duration-200"
+              placeholder="your-theme-name"
+            />
+          </div>
+
+          <!-- Screenshot Upload Section -->
+          <div class="space-y-2">
+            <label class="flex items-center text-sm font-semibold text-gray-700 gap-2" for="screenshot">
+              <span>🖼️</span>
+              <span>Theme Screenshot</span>
+            </label>
+            <div class="relative">
+              <input type="file" id="screenshot" accept="image/png, image/jpeg" class="hidden" />
+              <label
+                for="screenshot"
+                class="flex flex-col items-center justify-center w-full p-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-pink-500 transition-all duration-200"
+              >
+                <div class="flex flex-col items-center text-center text-gray-600">
+                  <svg class="mx-auto h-12 w-12 text-pink-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <p class="mt-2 text-sm font-medium">
+                    <span class="text-pink-600 hover:underline">Upload a file</span>
+                    or drag & drop
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">PNG or JPG up to 1MB (1200×900 recommended)</p>
+                </div>
+              </label>
+              <div id="filePreview" class="hidden mt-2">
+                <div class="flex items-center space-x-2">
+                  <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-sm text-gray-600" id="fileName"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <button
+            type="button"
+            onclick="generateTheme()"
+            class="w-full bg-gradient-to-r from-pink-600 to-fuchsia-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-pink-700 hover:to-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105"
+          >
+            Generate Theme 🚀
+          </button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-6 text-sm text-gray-600 flex flex-col gap-1">
+        <p>Made with ❤️ for WordPress developers</p>
+        <p class="flex items-center justify-center gap-1 text-xs text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M8.257 3.099c.366-1.356 2.183-1.356 2.55 0l.964 3.59a1 1 0 00.95.69h3.722c1.381 0 1.95 1.77.933 2.598l-3.01 2.393a1 1 0 00-.347 1.062l.964 3.59c.366 1.356-1.146 2.471-2.304 1.62L10 15.424l-2.679 2.09c-1.158.851-2.67-.264-2.304-1.62l.964-3.59a1 1 0 00-.347-1.062l-3.01-2.393c-1.017-.827-.448-2.598.933-2.598h3.722a1 1 0 00.95-.69l.964-3.59z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Keep on building awesome sites!
+        </p>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // File upload preview
+      document.getElementById("screenshot").addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        const filePreview = document.getElementById("filePreview");
+        const fileName = document.getElementById("fileName");
+
+        if (file) {
+          filePreview.classList.remove("hidden");
+          fileName.textContent = file.name;
+
+          if (file.size > 1048576) {
+            alert("File size exceeds 1MB. Please choose a smaller file.");
+            this.value = "";
+            filePreview.classList.add("hidden");
+          }
+        } else {
+          filePreview.classList.add("hidden");
+        }
+      });
+
+      // Drag & drop
+      const dropZone = document.querySelector('label[for="screenshot"]');
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+      function highlight(e) {
+        dropZone.classList.add("border-pink-500");
+      }
+      function unhighlight(e) {
+        dropZone.classList.remove("border-pink-500");
+      }
+      dropZone.addEventListener("drop", handleDrop, false);
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const file = dt.files[0];
+        document.getElementById("screenshot").files = dt.files;
+
+        if (file) {
+          const filePreview = document.getElementById("filePreview");
+          const fileName = document.getElementById("fileName");
+          filePreview.classList.remove("hidden");
+          fileName.textContent = file.name;
+
+          if (file.size > 1048576) {
+            alert("File size exceeds 1MB. Please choose a smaller file.");
+            document.getElementById("screenshot").value = "";
+            filePreview.classList.add("hidden");
+          }
+        }
+      }
+
+      // Generate theme function
+      function generateTheme() {
+        const themeName = document.getElementById("themeName").value;
+        const themeVersion = document.getElementById("themeVersion").value;
+        const themeAuthor = document.getElementById("themeAuthor").value;
+        const authorUri = document.getElementById("authorUri").value;
+        const themeDescription = document.getElementById("themeDescription").value;
+        const folderName = document.getElementById("folderName").value;
+        const screenshotFile = document.getElementById("screenshot").files[0];
+
+        if (!themeName || !themeVersion || !themeAuthor || !authorUri || !themeDescription || !folderName || !screenshotFile) {
+          alert("Please fill in all fields and upload a screenshot.");
+          return;
+        }
+
+        if (screenshotFile.size > 1048576) {
+          alert("Screenshot file size exceeds 1MB. Please upload a smaller file.");
+          return;
+        }
+
+        const zip = new JSZip();
+        const folder = zip.folder(folderName);
+
+        // style.css
+        const styleContent = `/*
+Theme Name: ${themeName}
+Theme URI: https://dinurasellapperuma.com
+Description: ${themeDescription}
+Author: ${themeAuthor}
+Author URI: ${authorUri}
+Template: bricks
+Version: ${themeVersion}
+Text Domain:  DIXY
+*/`;
+        folder.file("style.css", styleContent);
+
+        // functions.php from hidden template below
+        folder.file("functions.php", document.querySelector('script[type="text/x-template-functions"]')?.textContent || "");
+
+        // screenshot
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          folder.file("screenshot.png", e.target.result.split(",")[1], { base64: true });
+
+          // elements folder with updated title.php
+          const elementsFolder = folder.folder("elements");
+          elementsFolder.file("title.php", document.querySelector('script[type="text/x-template-element"]')?.textContent || "");
+
+          zip.generateAsync({ type: "blob" }).then((content) => {
+            saveAs(content, `${folderName}.zip`);
+            alert("Child theme generated successfully!");
+          });
+        };
+        reader.readAsDataURL(screenshotFile);
+      }
+    </script>
+
+    <!-- Hidden templates for PHP files -->
+    <script type="text/x-template-functions">
+      <?php
+            /**
+             * Register/enqueue custom scripts and styles
+             */
+            add_action( 'wp_enqueue_scripts', function() {
+              // Enqueue your files on the canvas & frontend, not the builder panel. Otherwise custom CSS might affect builder)
+                if ( ! bricks_is_builder_main() ) {
+                    wp_enqueue_style( 'bricks-child', get_stylesheet_uri(), ['bricks-frontend'], filemtime( get_stylesheet_directory() . '/style.css' ) );
+                }
+            } );
+
+            /**
+             * Register custom elements
+             */
+            add_action( 'init', function() {
+              $element_files = [
+                __DIR__ . '/elements/title.php',
+              ];
+
+              foreach ( $element_files as $file ) {
+                \Bricks\Elements::register_element( $file );
+              }
+            }, 11 );
+
+            /**
+             * Add text strings to builder
+             */
+            add_filter( 'bricks/builder/i18n', function( $i18n ) {
+              // For element category 'custom'
+              $i18n['custom'] = esc_html__( 'Custom', 'bricks' );
+
+              return $i18n;
+            } );
+
+            /**
+             * Function to delete specified files
+             */
+
+            function delete_specific_files() {
+              // List of files to delete
+                $files_to_delete = [
+                    ABSPATH . 'license.txt',
+                    ABSPATH . 'readme.html',
+                    ABSPATH . 'wp-config-sample.php',
+                    ABSPATH . 'xmlrpc.php'
+                ];
+
+                // Loop through each file and attempt to delete it
+                foreach ($files_to_delete as $file) {
+                    if (file_exists($file)) {
+                        if (unlink($file)) {
+                            error_log(basename($file) . ' has been deleted successfully.');
+                        } else {
+                            error_log('Error: Unable to delete ' . basename($file) . '.');
+                        }
+                    } else {
+                        error_log(basename($file) . ' does not exist.');
+                    }
+                }
+            }
+            add_action('init', 'delete_specific_files');
+    </script>
+
+    <!-- UPDATED: title.php default content -->
+    <script type="text/x-template-element">
+        <?php
+        if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+        class Element_Custom_Title extends \Bricks\Element {
+          /**
+           * How to create custom elements in Bricks
+           *
+           * https://academy.bricksbuilder.io/article/create-your-own-elements
+           */
+          public $category     = 'custom';
+          public $name         = 'custom-title';
+          public $icon         = 'fas fa-anchor'; // FontAwesome 5 icon in builder (https://fontawesome.com/icons)
+          public $css_selector = '.custom-title-wrapper'; // Default CSS selector for all controls with 'css' properties
+          // public $scripts      = []; // Enqueue registered scripts by their handle
+
+          public function get_label() {
+            return esc_html__( 'Title', 'bricks' );
+          }
+
+          public function set_control_groups() {
+            $this->control_groups['typography'] = [
+              'title' => esc_html__( 'Typography', 'bricks' ),
+              'tab'   => 'content', // Accepts: 'content' or 'style'
+            ];
+          }
+
+          public function set_controls() {
+            $this->controls['title'] = [
+              'tab'            => 'content',
+              'label'          => esc_html__( 'Title', 'bricks' ),
+              'type'           => 'text',
+              'hasDynamicData' => 'text',
+              'default'        => esc_html__( 'I am a custom element', 'bricks' ),
+              'placeholder'    => esc_html__( 'Title goes here ..', 'bricks' ),
+            ];
+
+            $this->controls['subtitle'] = [
+              'tab'            => 'content',
+              'label'          => esc_html__( 'Subtitle', 'bricks' ),
+              'type'           => 'text',
+              'hasDynamicData' => 'text',
+              'default'        => esc_html__( 'Just a subtitle. Click to edit me!', 'bricks' ),
+              'placeholder'    => esc_html__( 'Subtitle goes here ..', 'bricks' ),
+            ];
+
+            $this->controls['titleTypography'] = [
+              'tab'     => 'content',
+              'group'   => 'typography',
+              'label'   => esc_html__( 'Title typography', 'bricks' ),
+              'type'    => 'typography',
+              'default' => [
+                'color' => [
+                  'hex' => '#f44336',
+                ],
+              ],
+              'css'     => [
+                [
+                  'property' => 'typography',
+                  'selector' => '.title',
+                ],
+              ],
+            ];
+
+            $this->controls['subtitleTypography'] = [
+              'tab'     => 'content',
+              'group'   => 'typography',
+              'label'   => esc_html__( 'Subtitle typography', 'bricks' ),
+              'type'    => 'typography',
+              'default' => [
+                'font-size' => '18px',
+              ],
+              'css'     => [
+                [
+                  'property' => 'typography',
+                  'selector' => '.subtitle',
+                ],
+              ],
+            ];
+          }
+
+          /**
+          * Render element HTML on frontend
+          *
+          * If no 'render_builder' function is defined then this code is used to render element HTML in builder, too.
+          */
+          public function render() {
+            $settings = $this->settings;
+            $title    = ! empty( $settings['title'] ) ? $settings['title'] : false;
+            $subtitle = ! empty( $settings['subtitle'] ) ? $settings['subtitle'] : false;
+
+            // Return element placeholder if no title and subtitle
+            if ( ! $title && ! $subtitle ) {
+              return $this->render_element_placeholder( [
+                'icon-class'  => 'ti-paragraph',
+                'title'       => esc_html__( 'Please add a title/subtitle.', 'bricks' ),
+                'description' => esc_html__( 'Here goes the element placeholder description (optional).', 'bricks' ),
+              ] );
+            }
+
+            /**
+            * '_root' attribute contains element ID, classes, etc.
+            *
+            * @since 1.4
+            */
+            $output = "<div {$this->render_attributes( '_root' )}>";
+
+            if ( $title ) {
+              $this->set_attribute( 'title', 'class', 'title' );
+
+              $output .= "<h4 {$this->render_attributes( 'title' )}>$title</h4>";
+            }
+
+            if ( $subtitle ) {
+              $this->set_attribute( 'subtitle', 'class', 'subtitle' );
+
+              $output .= "<div {$this->render_attributes( 'subtitle' )}>$subtitle</div>";
+            }
+
+            $output .= '</div>';
+
+            // Output final element HTML
+            echo $output;
+          }
+
+          /**
+           * Render element HTML in builder (optional)
+           *
+           * Adds element render scripts to wp_footer via x-template.
+           * Better performance than PHP 'render' function, which requires AJAX requests for every HTML re-render.
+           * Works only with static, non-database data.
+           */
+           public static function render_builder() { ?>
+            <script type="text/x-template" id="tmpl-bricks-element-custom-title">
+              <component
+                :is="tag"
+                class="custom-title-wrapper">
+                <contenteditable
+                  v-if="settings.title"
+                  tag="h4"
+                  :name="name"
+                  :settings="settings"
+                  controlKey="title"
+                  class="title"/>
+
+                <contenteditable
+                  v-if="settings.subtitle"
+                  :name="name"
+                  :settings="settings"
+                  controlKey="subtitle"
+                  class="subtitle"/>
+              </component>
+            </script&gt;
+      <?php
+          }
+        }
+    </script>
+  </body>
+</html>
