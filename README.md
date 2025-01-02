@@ -44,7 +44,9 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
   - Enqueuing child theme CSS.
   - Registering a custom element, `title.php`, for Bricks Builder.
   - Deleting certain WordPress default files (like `license.txt` or `readme.html`) — remove or comment out if not desired.
-  - Note: I have added code to delete these unnecessary files for WordPress security purposes. Feel free to remove this feature if you do not need it.
+  - Note: I have added code to delete these unnecessary files for WordPress security purposes. Deleting certain default WordPress files—like license.txt,       
+    readme.html, wp-config-sample.php, and xmlrpc.php—for security purposes. Feel free to remove or comment out this feature if you don’t want to delete these 
+    files.
 
 ## License
 
