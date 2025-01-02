@@ -1,8 +1,8 @@
 # Bricks Child Theme Generator
 
-A **one-page** generator to quickly create a WordPress child theme for [Bricks Builder](https://bricksbuilder.io).
+A **one-page** generator to quickly create a WordPress child theme for [Bricks Builder](https://bricksbuilder.io).  
 
-**Live Demo:**  <a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">Bricks Child Theme Generator</a>
+**Live Demo:** [Bricks Child Theme Generator](https://bricks.dixy.page)
 
 ## Features
 
@@ -12,7 +12,7 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
 
 ## How to Use
 
-1. **Visit** the live demo at  <a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">https://bricks.dixy.page</a>
+1. **Visit** the live demo at [https://bricks.dixy.page](https://bricks.dixy.page).  
 2. Fill out all required fields:
    - **Theme Name**
    - **Version**
@@ -36,6 +36,7 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
 1. **Clone** this repository:
    ```bash
    git clone https://github.com/your-username/bricks-child-theme-generator.git
+   
 
 ## Notes
 
