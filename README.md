@@ -35,7 +35,7 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
 
 1. **Clone** this repository:
    ```bash
-   git clone https://github.com/your-username/bricks-child-theme-generator.git
+   git clone https://github.com/DinuraSellapperuma/bricks-child-theme-generator.git
 
 ## Notes
 
