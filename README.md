@@ -2,8 +2,7 @@
 
 A **one-page** generator to quickly create a WordPress child theme for [Bricks Builder](https://bricksbuilder.io).
 
-**Live Demo:**  
-<a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">bricks.dixy.page</a>
+**Live Demo:**  <a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">Bricks Child Theme Generator</a>
 
 ## Features
 
@@ -13,8 +12,7 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
 
 ## How to Use
 
-1. **Visit** the live demo at  
-   <a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">https://bricks.dixy.page</a>
+1. **Visit** the live demo at  <a href="https://bricks.dixy.page" target="_blank" rel="noopener noreferrer">https://bricks.dixy.page</a>
 2. Fill out all required fields:
    - **Theme Name**
    - **Version**
@@ -38,3 +36,19 @@ A **one-page** generator to quickly create a WordPress child theme for [Bricks B
 1. **Clone** this repository:
    ```bash
    git clone https://github.com/your-username/bricks-child-theme-generator.git
+
+## Notes
+
+- The generated child theme automatically references the `bricks` parent theme (`Template: bricks` in `style.css`).
+- The included code in `functions.php` takes care of:
+  - Enqueuing child theme CSS.
+  - Registering a custom element, `title.php`, for Bricks Builder.
+  - Deleting certain WordPress default files (like `license.txt` or `readme.html`) — remove or comment out if not desired.
+
+## License
+
+This project is open source under the [MIT License](LICENSE), but please note that Bricks Builder and WordPress are proprietary and/or GPL-licensed respectively. You must abide by their licenses when using them.
+
+---
+
+**Happy building!**
