@@ -1,6 +1,6 @@
 # Bricks Child Theme Generator
 
-A **one-page** generator to quickly create a WordPress child theme for [Bricks Builder](https://bricksbuilder.io). This generator:
+A **one-page** generator to quickly create a WordPress child theme for [Bricks Builder](https://bricksbuilder.io). This generator: https://bricks.dixy.page
 
 - Accepts user input for **Theme Name**, **Version**, **Author**, etc.
 - Automatically creates the necessary **style.css**, **functions.php**, and **screenshot.png** (uploaded by the user).
